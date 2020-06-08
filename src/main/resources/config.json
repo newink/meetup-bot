@@ -1,0 +1,7 @@
+{
+  "botToken": "",
+  "proxy": {
+    "host": "localhost",
+    "port": 80
+  }
+}
