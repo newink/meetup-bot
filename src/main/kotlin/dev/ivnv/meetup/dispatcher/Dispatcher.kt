@@ -5,6 +5,7 @@ import com.github.kotlintelegrambot.dispatcher.command
 import com.github.kotlintelegrambot.dispatcher.sticker
 import com.github.kotlintelegrambot.dispatcher.text
 import dev.ivnv.meetup.logging.LoggerDelegate
+import org.jetbrains.exposed.sql.transactions.transaction
 
 
 class Dispatcher {
@@ -19,6 +20,11 @@ class Dispatcher {
             log.info("{}, {}", update)
         }
         command("start") { bot, update, list ->
+
+            transaction {
+
+            }
+
             log.info("{}, {}", update, list)
         }
     }

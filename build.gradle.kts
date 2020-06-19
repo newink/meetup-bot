@@ -30,6 +30,7 @@ dependencies {
     implementation("org.koin:koin-core:2.1.5")
     implementation("io.github.kotlin-telegram-bot.kotlin-telegram-bot:telegram:5.0.0")
     implementation("org.slf4j:slf4j-simple:1.7.30")
+    implementation("com.zaxxer:HikariCP:3.4.5")
 
     implementation(kotlin("stdlib-jdk8"))
     testImplementation("junit", "junit", "4.12")

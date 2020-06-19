@@ -6,6 +6,7 @@ import com.github.kotlintelegrambot.dispatch
 import com.github.kotlintelegrambot.dispatcher.Dispatcher
 import dev.ivnv.meetup.config.Configuration
 import dev.ivnv.meetup.config.ProxyAuth
+import dev.ivnv.meetup.database.DatabaseConfigurer
 import okhttp3.logging.HttpLoggingInterceptor
 import org.koin.core.KoinComponent
 import org.koin.core.inject
@@ -17,8 +18,10 @@ class Bot : KoinComponent {
 
     private val config: Configuration by inject()
     private val dispatcher: Dispatcher.() -> Unit by inject()
+    private val databaseConfigurer: DatabaseConfigurer by inject()
 
     fun start() {
+        databaseConfigurer.init()
         configureBot().startPolling()
     }
 
