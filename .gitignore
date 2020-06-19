@@ -166,4 +166,7 @@ fabric.properties
 # See https://youtrack.jetbrains.com/issue/JBR-2257
 .idea/$CACHE_FILE$
 
+# Project specific
+test-config.json
+
 

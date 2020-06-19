@@ -1,7 +1,10 @@
 {
   "botToken": "",
   "proxy": {
-    "host": "localhost",
-    "port": 80
+    "username": "",
+    "password": "",
+    "host": "",
+    "port": 8000,
+    "type": "SOCKS"
   }
 }

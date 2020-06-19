@@ -22,10 +22,25 @@ repositories {
 }
 
 dependencies {
+    exposed("0.24.1").forEach {
+        implementation(it)
+    }
+    implementation("com.h2database:h2:1.4.200")
+    implementation("com.tinder.statemachine:statemachine:0.2.0")
     implementation("org.koin:koin-core:2.1.5")
     implementation("io.github.kotlin-telegram-bot.kotlin-telegram-bot:telegram:5.0.0")
+    implementation("org.slf4j:slf4j-simple:1.7.30")
+
     implementation(kotlin("stdlib-jdk8"))
     testImplementation("junit", "junit", "4.12")
+}
+
+fun exposed(version: String): Array<String> {
+    return arrayOf(
+        "org.jetbrains.exposed:exposed-core:$version",
+        "org.jetbrains.exposed:exposed-dao:$version",
+        "org.jetbrains.exposed:exposed-jdbc:$version"
+    )
 }
 
 configure<JavaPluginConvention> {
