@@ -6,6 +6,7 @@ import java.net.Proxy.Type as ProxyType
 
 data class Configuration(
     val botToken: String,
+    val debug: Boolean,
     val proxy: Proxy
 )
 

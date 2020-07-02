@@ -4,6 +4,7 @@ import com.github.kotlintelegrambot.Bot
 import com.github.kotlintelegrambot.bot
 import com.github.kotlintelegrambot.dispatch
 import com.github.kotlintelegrambot.dispatcher.Dispatcher
+import com.github.kotlintelegrambot.entities.Update
 import dev.ivnv.meetup.config.Configuration
 import dev.ivnv.meetup.config.ProxyAuth
 import dev.ivnv.meetup.database.DatabaseConfigurer
@@ -18,17 +19,15 @@ class Bot : KoinComponent {
 
     private val config: Configuration by inject()
     private val dispatcher: Dispatcher.() -> Unit by inject()
-    private val databaseConfigurer: DatabaseConfigurer by inject()
 
     fun start() {
-        databaseConfigurer.init()
         configureBot().startPolling()
     }
 
     private fun configureBot(): Bot = bot {
         token = config.botToken
         timeout = 5
-        logLevel = HttpLoggingInterceptor.Level.BODY
+        logLevel = HttpLoggingInterceptor.Level.NONE
         proxy = configureProxy()
         dispatch { dispatcher(this) }
     }
@@ -37,4 +36,5 @@ class Bot : KoinComponent {
         Authenticator.setDefault(ProxyAuth(config))
         return Proxy(config.proxy.type, InetSocketAddress(config.proxy.host, config.proxy.port))
     }
+
 }

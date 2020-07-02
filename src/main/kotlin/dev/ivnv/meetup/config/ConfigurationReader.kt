@@ -14,10 +14,8 @@ class ConfigurationReader {
 
     private fun readFromFile(): String? {
         val filePath = System.getProperty("configFile")
-        return if (filePath.isNotBlank()) {
-            File(filePath).readText()
-        } else {
+        return if (filePath.isNullOrBlank())
             this.javaClass.classLoader.getResource("config.json")?.readText()
-        }
+        else File(filePath).readText()
     }
 }

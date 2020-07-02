@@ -4,11 +4,12 @@ import com.github.kotlintelegrambot.dispatcher.Dispatcher
 import com.github.kotlintelegrambot.dispatcher.command
 import com.github.kotlintelegrambot.dispatcher.sticker
 import com.github.kotlintelegrambot.dispatcher.text
+import com.tinder.StateMachine
 import dev.ivnv.meetup.logging.LoggerDelegate
-import org.jetbrains.exposed.sql.transactions.transaction
+import dev.ivnv.meetup.service.StateService
 
 
-class Dispatcher {
+class Dispatcher(private val stateMachine: StateMachine<StateService.State, StateService.Event, StateService.SideEffect>) {
 
     private val log by LoggerDelegate()
 
@@ -20,12 +21,7 @@ class Dispatcher {
             log.info("{}, {}", update)
         }
         command("start") { bot, update, list ->
-
-            transaction {
-
-            }
-
-            log.info("{}, {}", update, list)
+            stateMachine.transition(StateService.Event.OnStart(bot, update))
         }
     }
 }
